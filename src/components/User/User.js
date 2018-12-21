@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Image, Item } from "semantic-ui-react";
-import babyYak from "../../pages/Profile_Page/babyYak.jpg";
+import babyYak from "../../pages/Profile/babyYak.jpg";
 
 export default class User extends Component {
   state = {};

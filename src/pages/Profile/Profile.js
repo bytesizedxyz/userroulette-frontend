@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import User from "../../components/User";
 
-export default class Profile_Page extends Component {
+export default class Profile extends Component {
   state = {
     username: "username",
     bio: "myBio",
