@@ -16,6 +16,7 @@ export default class Profile extends Component {
   }
   fetchUser = () => {
     const location = this.props.location.pathname;
+    console.log(this.props.location);
     const user = location.split("/")[1];
     console.log(user);
 

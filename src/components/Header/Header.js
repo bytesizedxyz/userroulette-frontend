@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Icon, Menu, Grid } from "semantic-ui-react";
-import Gravatar from "react-gravatar";
+import { Menu } from "semantic-ui-react";
 
 class Header extends Component {
   state = {};
@@ -17,16 +16,15 @@ class Header extends Component {
 
     return (
       <Menu size="large">
-        <Menu.Item header>User Roulette</Menu.Item>
+        <Menu.Item header href="/">
+          User Roulette
+        </Menu.Item>
         <Menu.Item
           name="userProfile"
           active={activeItem === "userProfile"}
           onClick={this.handleItemClick}
         />
         <Menu.Item name="signUp" active={activeItem === "signUp"} onClick={this.handleItemClick} />
-        <Menu.Item position="right">
-          <Gravatar email={"billgates@microsoft.com"} />
-        </Menu.Item>
       </Menu>
     );
   }
