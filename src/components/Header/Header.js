@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Menu, Button } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import api from "../../api";
 
 class Header extends Component {
@@ -19,7 +19,7 @@ class Header extends Component {
       return;
     } else {
       const username = randomUser.data.user[0].username;
-      history.push(`/${username}`);
+      history.push("/" + username);
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Image, Item, Card } from "semantic-ui-react";
+import { Grid, Card } from "semantic-ui-react";
 import Gravatar from "react-gravatar";
 import "./User.css";
 
@@ -24,8 +24,8 @@ export default class User extends Component {
                 <Card.Description>{bio}</Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <Card.Description as="a" target="_blank" href={link}>
-                  {link}
+                <Card.Description as="a" target="_blank" href={link ? link : null}>
+                  {link ? link : "No Link"}
                 </Card.Description>
               </Card.Content>
             </Card>
