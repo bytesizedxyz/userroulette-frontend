@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
 
 import Signup_Page from "./pages/Signup_Page";
 
+
+//Component
 import Header from "./components/Header";
+
+//Pages
+import Landing from "./pages/Landing";
+import Profile from "./pages/Profile";
 
 class App extends Component {
   render() {
@@ -12,9 +19,12 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
-            {/* <Route exact path="/" component={Landing_Page} />
-            <Route exact path="/username" component={Profile_Page} /> */}
+
+           
             <Route exact path="/signup" component={Signup_Page} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/username" component={Profile} />
+
           </Switch>
         </div>
       </Router>
