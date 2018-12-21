@@ -15,7 +15,6 @@ class Header extends Component {
   getRandomUser = async () => {
     const { history } = this.props;
     const randomUser = await api.get("users/random");
-    console.log(randomUser.data.user);
     if (!randomUser.data.user.length) {
       return;
     } else {
