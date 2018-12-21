@@ -18,7 +18,7 @@ class Header extends Component {
     if (!randomUser.data.user.length) {
       return;
     } else {
-      const username = randomUser.data.user[0].userName;
+      const username = randomUser.data.user[0].username;
       history.push(`/${username}`);
     }
   };
@@ -31,11 +31,6 @@ class Header extends Component {
         <Menu.Item header href="/">
           User Roulette
         </Menu.Item>
-        <Menu.Item
-          name="userProfile"
-          active={activeItem === "userProfile"}
-          onClick={this.handleItemClick}
-        />
         <Menu.Item name="signUp" active={activeItem === "signUp"} onClick={this.handleItemClick} />
         <Menu.Item name="randomUser" position="right" onClick={this.getRandomUser} />
       </Menu>
