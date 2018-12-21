@@ -7,23 +7,21 @@ class Landing extends React.Component {
   state = { user: null };
 
   componentDidMount = async () => {
-    // await api.get("/users/featured");
-
+    const userResponse = await api.get("/users/featured");
+    const foundUser = userResponse.data[0];
+    console.log(foundUser);
     const user = {
-      username: "username",
-      bio: "myBio",
-      first_name: "firstName",
-      last_name: "lastName",
-      email: "email",
-      link: "myLink"
+      username: foundUser.username,
+      bio: foundUser.bio,
+      first_name: foundUser.first_name,
+      last_name: foundUser.last_name,
+      email: foundUser.email,
+      link: foundUser.link
     };
-
     this.setState({ user });
   };
 
-  render = () => (
-    <div>{this.state.user && <User user={this.state.user} />}</div>
-  );
+  render = () => <div>{this.state.user && <User user={this.state.user} />}</div>;
 }
 
 export default Landing;

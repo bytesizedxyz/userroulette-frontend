@@ -16,6 +16,15 @@ export default class Profile extends Component {
   componentDidMount() {
     this.fetchUser();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname === this.props.location.pathname) {
+      return false;
+    } else {
+      this.fetchUser();
+    }
+  }
+
   fetchUser = async () => {
     const reqUsername = this.props.location.pathname.split("/")[1];
 
