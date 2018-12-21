@@ -18,8 +18,12 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path="/username" component={Profile} />
             <Route exact path="/signup" component={SignupPage} />
+            <Route
+              exact
+              path="/:username"
+              component={props => <Profile {...props} />}
+            />
           </Switch>
         </div>
       </Router>
