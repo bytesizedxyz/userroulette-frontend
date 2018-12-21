@@ -6,6 +6,7 @@ import "./App.css";
 import Header from "./components/Header";
 
 //Pages
+import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <Switch>
-            {/* <Route exact path="/" component={Landing} /> */}
+            <Route exact path="/" component={Landing} />
             <Route exact path="/:username" component={props => <Profile {...props} />} />
             {/* <Route exact path="/signup" component={Signup} /> */}
           </Switch>
