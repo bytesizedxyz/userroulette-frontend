@@ -1,28 +1,32 @@
 import React, { Component } from "react";
 import User from "../../components/User";
+import api from "../../api";
+import { Grid, Header } from "semantic-ui-react";
 
 export default class Profile extends Component {
   state = {
-    username: "username",
-    bio: "myBio",
-    first_name: "firstName",
-    last_name: "lastName",
-    email: "email",
-    link: "myLink"
+    username: null,
+    bio: null,
+    first_name: null,
+    last_name: null,
+    email: null,
+    link: null
   };
 
   componentDidMount() {
     this.fetchUser();
   }
-  fetchUser = () => {
-    const location = this.props.location.pathname;
-    console.log(this.props.location);
-    const user = location.split("/")[1];
-    console.log(user);
+  fetchUser = async () => {
+    const reqUsername = this.props.location.pathname.split("/")[1];
 
-    //make request to database with username
-    //set state with the user that was requested
-    this.setState({ username: "AwesomeUserName" });
+    const userReponse = await api.get(`users/${reqUsername}`);
+
+    if (!userReponse.data.user.length) {
+      return;
+    } else {
+      const { username, bio, first_name, last_name, email, link } = userReponse.data.user[0];
+      this.setState({ username, bio, first_name, last_name, email, link });
+    }
   };
 
   render() {
@@ -35,6 +39,16 @@ export default class Profile extends Component {
       email,
       link
     };
-    return <User user={UserInfo} />;
+    return (
+      <div>
+        {username ? (
+          <User user={UserInfo} />
+        ) : (
+          <Grid>
+            <Header>No User Was Found. Try Again.</Header>
+          </Grid>
+        )}
+      </div>
+    );
   }
 }
