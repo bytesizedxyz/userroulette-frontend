@@ -23,8 +23,8 @@ export default class SignUpForm extends Component {
     e.preventDefault();
     if (this.validateForm()) {
       api
-        .post("/", this.state.fields)
-        .then(function(response) {
+        .post("/users", this.state.fields)
+        .then(response => {
           let fields = {};
           fields["username"] = "";
           fields["email"] = "";
@@ -116,7 +116,7 @@ export default class SignUpForm extends Component {
 
     return (
       <div className="ui container">
-        <Form method="post" name="Signup_Form" onSubmit={this.handleSubmit}>
+        <Form name="Signup_Form" onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Username</label>
             <input
