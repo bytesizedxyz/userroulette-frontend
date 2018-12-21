@@ -23,7 +23,8 @@ class App extends Component {
            
             <Route exact path="/signup" component={Signup_Page} />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/username" component={Profile} />
+            <Route exact path="/:username" component={props => <Profile {...props} />} />
+            {/* <Route exact path="/signup" component={Signup} /> */}
 
           </Switch>
         </div>
