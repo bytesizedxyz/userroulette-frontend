@@ -9,7 +9,6 @@ export default class User extends Component {
     const {
       user: { username, bio, first_name, last_name, email, link }
     } = this.props;
-    console.log(username);
     return (
       <Grid centered>
         <Grid.Row>

@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Icon, Menu, Grid } from "semantic-ui-react";
 import Gravatar from "react-gravatar";
 
-export default class Header extends Component {
+class Header extends Component {
   state = {};
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+    const { history } = this.props;
+    history.push(`/${name}`);
+  };
 
   render() {
     const { activeItem } = this.state;
@@ -27,3 +31,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default withRouter(Header);
