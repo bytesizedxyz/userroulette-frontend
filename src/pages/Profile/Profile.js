@@ -15,7 +15,13 @@ export default class Profile extends Component {
     this.fetchUser();
   }
   fetchUser = () => {
-    console.log("this is a user");
+    const location = this.props.location.pathname;
+    console.log(this.props.location);
+    const user = location.split("/")[1];
+    console.log(user);
+
+    //make request to database with username
+    //set state with the user that was requested
     this.setState({ username: "AwesomeUserName" });
   };
 
