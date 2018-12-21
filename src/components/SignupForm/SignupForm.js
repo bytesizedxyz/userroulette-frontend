@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
+import api from "../../api";
 import "./style.css";
 
-export default class SignUp_Form extends Component {
-  state = {
-    fields: {},
-    errors: {}
-  };
+export default class SignUpForm extends Component {
+  constructor() {
+    super();
+    this.state = { fields: {}, errors: {} };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   handleChange = e => {
     let fields = this.state.fields;
@@ -19,15 +22,22 @@ export default class SignUp_Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if (this.validateForm()) {
-      let fields = {};
-      fields["username"] = "";
-      fields["email"] = "";
-      fields["firstname"] = "";
-      fields["lastname"] = "";
-      fields["bio"] = "";
-      fields["link"] = "";
-      this.setState({ fields: fields });
-      alert("Form submitted");
+      api
+        .post("/", this.state.fields)
+        .then(function(response) {
+          let fields = {};
+          fields["username"] = "";
+          fields["email"] = "";
+          fields["first_name"] = "";
+          fields["last_name"] = "";
+          fields["bio"] = "";
+          fields["link"] = "";
+          this.setState({ fields: fields });
+          alert("Form submitted");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   };
 
@@ -64,27 +74,27 @@ export default class SignUp_Form extends Component {
       }
     }
 
-    if (!fields["firstname"]) {
+    if (!fields["first_name"]) {
       formIsValid = false;
-      errors["firstname"] = "*Please enter your First Name.";
+      errors["first_name"] = "*Please enter your First Name.";
     }
 
-    if (typeof fields["firstname"] !== "undefined") {
-      if (!fields["firstname"].match(/^[a-zA-Z ]*$/)) {
+    if (typeof fields["first_name"] !== "undefined") {
+      if (!fields["first_name"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
-        errors["firstname"] = "*Please enter alphabet characters only.";
+        errors["first_name"] = "*Please enter alphabet characters only.";
       }
     }
 
-    if (!fields["lastname"]) {
+    if (!fields["last_name"]) {
       formIsValid = false;
-      errors["lastname"] = "*Please enter your Last Name.";
+      errors["last_name"] = "*Please enter your Last Name.";
     }
 
-    if (typeof fields["lastname"] !== "undefined") {
-      if (!fields["lastname"].match(/^[a-zA-Z ]*$/)) {
+    if (typeof fields["last_name"] !== "undefined") {
+      if (!fields["last_name"].match(/^[a-zA-Z ]*$/)) {
         formIsValid = false;
-        errors["lastname"] = "*Please enter alphabet characters only.";
+        errors["last_name"] = "*Please enter alphabet characters only.";
       }
     }
 
@@ -98,8 +108,8 @@ export default class SignUp_Form extends Component {
     const {
       username,
       email,
-      firstname,
-      lastname,
+      first_name,
+      last_name,
       bio,
       link
     } = this.state.fields;
@@ -133,23 +143,23 @@ export default class SignUp_Form extends Component {
             <label>First Name</label>
             <input
               type="text"
-              name="firstname"
-              value={firstname}
+              name="first_name"
+              value={first_name}
               placeholder="First Name"
               onChange={this.handleChange}
             />
-            <div className="errorMsg">{this.state.errors.firstname}</div>
+            <div className="errorMsg">{this.state.errors.first_name}</div>
           </Form.Field>
           <Form.Field>
             <label>Last Name</label>
             <input
               type="text"
-              name="lastname"
-              value={lastname}
+              name="last_name"
+              value={last_name}
               placeholder="Last Name"
               onChange={this.handleChange}
             />
-            <div className="errorMsg">{this.state.errors.lastname}</div>
+            <div className="errorMsg">{this.state.errors.last_name}</div>
           </Form.Field>
           <Form.TextArea
             type="text"
