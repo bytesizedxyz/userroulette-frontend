@@ -1,3 +1,3 @@
 import axios from "axios";
-const baseUrl = "https://my-eventual-api.com";
+const baseUrl = "https://userroulette-backend.herokuapp.com";
 export default axios.create(baseUrl);
