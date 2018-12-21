@@ -14,7 +14,8 @@ class Header extends Component {
 
   getRandomUser = async () => {
     const { history } = this.props;
-    const randomUser = await api.get("/users/random");
+    const randomUser = await api.get("users/random");
+    console.log(randomUser.data.user);
     if (!randomUser.data.user.length) {
       return;
     } else {
@@ -37,7 +38,7 @@ class Header extends Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item name="signUp" active={activeItem === "signUp"} onClick={this.handleItemClick} />
-        <Menu.Item name="randomUser" onClick={this.getRandomUser} />
+        <Menu.Item name="randomUser" position="right" onClick={this.getRandomUser} />
       </Menu>
     );
   }
